@@ -1,4 +1,4 @@
-import {bootsrap, Component} from 'anguarls2/angular2';
+import {bootstrap, Component} from 'angular2/angular2';
 
 @Component({
 	selector: 'my-app',
@@ -6,4 +6,4 @@ import {bootsrap, Component} from 'anguarls2/angular2';
 })
 class AppComponent {}
 
-bootsrap(AppComponent);
+bootstrap(AppComponent);
