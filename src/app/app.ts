@@ -1,4 +1,4 @@
-import {bootstrap, Component, FORM_DIRECTIVES, NgFor, NgIf} from 'angular2/angular2';
+import {bootstrap, Component, FORM_DIRECTIVES, CORE_DIRECTIVES} from 'angular2/angular2';
 
 class Hero {
 	id: number;
@@ -20,12 +20,12 @@ var HEROES: Hero[] = [
 
 @Component({
 	selector: 'my-app',
-	directives: [FORM_DIRECTIVES, NgFor, NgIf],
+	directives: [FORM_DIRECTIVES, CORE_DIRECTIVES],
 	template: `
 		<h1>{{title}}</h1>
 		<h2>My Heroes</h2>
         <ul class="heroes">
-          <li *ng-for="#hero of heroes" (click)="onSelect(hero)">
+          <li *ng-for="#hero of heroes" (click)="onSelect(hero)" [ng-class]="getSelectedClass(hero)">
             <span class="badge">{{hero.id}}</span> {{hero.name}}
           </li>
         </ul>
@@ -34,7 +34,7 @@ var HEROES: Hero[] = [
             <div><label>id: </label>{{selectedHero.id}}</div>
             <div>
                 <label>name: </label>
-                <input [(ng-model)]="selectedHero.name" placeholder="name"></input>
+                <input [(ng-model)]="selectedHero.name" placeholder="name">
             </div>
         </div>
 		`,
@@ -67,6 +67,10 @@ class AppComponent {
     onSelect(hero: Hero) {
         this.selectedHero = hero;
     }
+
+	getSelectedClass(hero: Hero) {
+		return { 'selected': hero === this.selectedHero };
+	}
 }
 
 bootstrap(AppComponent);
